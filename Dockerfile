@@ -1,11 +1,9 @@
 FROM python:3
-#RUN pip install --upgrade pip#
+RUN pip install --upgrade pip
 
 WORKDIR /app
-COPY app.py/app
-COPY index.html/app
-COPY requirements.txt/app
-RUN pip install -r requirements.txt
+
+
 CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0"]
 
 #Update apt packages
