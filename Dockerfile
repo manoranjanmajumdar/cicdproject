@@ -1,7 +1,7 @@
-FROM python:3
+FROM python:3.8
 RUN pip install --upgrade pip
 WORKDIR /python-docker
-CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD [ "python", "-m", "flask", "run", "--host=0.0.0.0"]
 
 #Update apt packages
 RUN apt update
