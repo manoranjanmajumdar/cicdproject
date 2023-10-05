@@ -1,28 +1,25 @@
-FROM python:3
-RUN pip install --upgrade pip
+FROM python:3.8
 
+# Set the working directory in the container
 WORKDIR /app
 
-COPY ./app
+# Copy the Flask application code into the container at /app
+COPY app.py /app
 
+# Copy the HTML file into the container at /app
+COPY index.html /app
 
-CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0"]
+# Copy the requirements file into the container at /app
+COPY requirements.txt /app
 
-#Update apt packages
-RUN apt update
-RUN apt upgrade -y
+# Install Flask and other necessary packages
+RUN pip install -r requirements.txt
 
-#Install vim
-RUN apt install vim -y
+# Install additional packages: VIM, Netstat, Nginx, Wget
+RUN apt-get update && apt-get install -y vim net-tools nginx wget
 
-RUN apt install net-tools -y
-RUN apt-get -y update && apt-get -y install nginx
+# Expose the Flask app port
+EXPOSE 5000 8000
 
-#Expose the port for access
-EXPOSE 80/tcp
-EXPOSE 8000
-
-#Run the Nginx server
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
-RUN apt-get update && apt-get install wget -y
-
+# Command to run the application
+CMD ["python", "app.py"]
