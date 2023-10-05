@@ -19,7 +19,7 @@ RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install -y vim net-tools nginx wget
 
 # Expose the Flask app port
-EXPOSE 80 8000
+EXPOSE 5000
 
 # Command to run the application
 CMD ["python", "app.py"]
