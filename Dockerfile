@@ -14,7 +14,7 @@ RUN apt install net-tools -y
 RUN apt-get -y update && apt-get -y install nginx
 
 #Expose the port for access
-EXPOSE 80/tcp
+EXPOSE 80
 EXPOSE 8000
 
 #Run the Nginx server
